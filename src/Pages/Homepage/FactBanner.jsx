@@ -22,10 +22,10 @@ const FactBanner = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>
             <div className="h-[440px] w-11/12 linear md:hidden rounded-3xl flex gap-45 flex-col">
-              <p className="text-xl pl-4 pt-5">
+              <p className="text-xl text-yellow-500 pl-4 pt-5">
                 Over 30 Million Stray Dogs <br /> Roam the Streets of India
               </p>
-              <p className="text-xl pl-4 pt-5">
+              <p className="text-xl text-yellow-500 pl-4 pt-5">
                 Give them a <br /> Loving Home
               </p>
             </div>
@@ -39,10 +39,10 @@ const FactBanner = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>
               <div className="flex flex-col gap-10">
-                <p className="text-xl text-amber-500 g">
+                <p className="text-xl text-white g">
                   Over 30 Million Stray Dogs <br /> Roam the Streets of India
                 </p>
-                <p className="text-xl text-amber-400 ">
+                <p className="text-xl text-white ">
                   Give them a <br /> Loving Home
                 </p>
               </div>
