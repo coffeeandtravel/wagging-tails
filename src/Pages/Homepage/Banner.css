@@ -11,6 +11,7 @@
     background-image: url('../../assets/fact.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 
     }
 
@@ -19,3 +20,6 @@
             letter-spacing: -3px;
         }
     }
+.linear{
+    background: linear-gradient(90deg, #1C1C1C 0%, rgba(115, 115, 115, 0.21) 100%);
+}

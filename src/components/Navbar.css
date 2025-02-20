@@ -18,3 +18,8 @@
 button{
     letter-spacing: -1px;
 }
+@media screen and (max-width: 576px) {
+    .navbarHeading {
+        font-weight: 500;
+    }
+}
