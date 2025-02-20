@@ -39,10 +39,10 @@ const FactBanner = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>
               <div className="flex flex-col gap-10">
-                <p className="text-xl text-white g">
+                <p className="text-xl text-amber-500 g">
                   Over 30 Million Stray Dogs <br /> Roam the Streets of India
                 </p>
-                <p className="text-xl text-white ">
+                <p className="text-xl text-amber-400 ">
                   Give them a <br /> Loving Home
                 </p>
               </div>

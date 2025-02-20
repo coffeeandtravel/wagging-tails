@@ -12,7 +12,7 @@ body{
 }
 /* Add this in your CSS file, or inline style if using CSS-in-JS */
 ::selection {
-    background-color: #FFD700; /* Background color of the selection */
+    background-color: #ffd21c; /* Background color of the selection */
     color: #000; /* Color of the selected text */
   }
   
