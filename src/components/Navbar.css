@@ -1,0 +1,20 @@
+.navBar{
+ background: #EFEFEF;
+}
+
+.navbarHeading{
+    text-align: center;
+    font-family: "Product Sans";
+    /* font-size: 40px; */
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -3.2px;
+    background: linear-gradient(90deg, #FC3B3B 0%, #EB9B6D 52.5%, #E375E6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+button{
+    letter-spacing: -1px;
+}

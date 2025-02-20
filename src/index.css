@@ -1,0 +1,12 @@
+@import "tailwindcss";
+body{
+    background-color: #151515;
+}
+@font-face {
+    font-family: 'Product Sans';
+    src: url(assets/Product\ Sans\ Bold.ttf);
+}
+*{
+    font-family: 'Product Sans', sans-serif;
+    
+}

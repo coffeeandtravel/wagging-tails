@@ -1,0 +1,15 @@
+.banner{
+    background-image: url('../../assets/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.banner-heading{
+    letter-spacing: -5px;
+}
+.fact{
+    background-image: url('../../assets/fact.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
