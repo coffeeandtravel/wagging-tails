@@ -23,3 +23,6 @@
 .linear{
     background: linear-gradient(90deg, #1C1C1C 0%, rgba(115, 115, 115, 0.21) 100%);
 }
+.fact-text{
+    letter-spacing: -2px;
+}
