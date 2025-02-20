@@ -4,7 +4,7 @@ const FactBanner = () => {
   return (
     <div className=" mt-5">
       <div className=" flex items-center justify-center">
-        <div className="h-[900px] w-[94%] lg:h-[600px] lg:w-[906px] bg-black rounded-3xl flex items-center mb-12 p-5 flex-col lg:flex-row-reverse justify-between">
+        <div className="h-[860px] w-[94%] lg:h-[600px] lg:w-[906px] bg-black rounded-3xl flex items-center mb-12 p-5 flex-col lg:flex-row-reverse justify-between">
           <div className="fact h-[500px] w-full mt-3 rounded-3xl flex items-center justify-center">
             <div className="h-[440px] w-11/12 linear rounded-3xl flex gap-45 flex-col">
             <p className="text-xl pl-4 pt-5 ">Over 30 Million Stray Dogs <br /> Roam the Streets of India</p>
