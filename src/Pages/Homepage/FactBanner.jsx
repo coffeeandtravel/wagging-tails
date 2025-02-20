@@ -33,7 +33,7 @@ const FactBanner = () => {
           <motion.div className="block md:hidden" initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
-            <p className="text-white text-justify">{`"In India, millions of stray dogs struggle to survive on the streets, often facing hunger, illness, and the dangers of traffic. Despite their tough lives, many of these resilient dogs are incredibly loving and loyal, waiting for a chance to find a safe home. By adopting a stray dog, you’re not only saving a life but also giving them the love and care they deserve. Adoption is a powerful way to reduce the homeless dog population and provide these animals with the opportunity for a better future."`}</p>
+            <p className="text-white text-justify mt-5">{`"In India, millions of stray dogs struggle to survive on the streets, often facing hunger, illness, and the dangers of traffic. Despite their tough lives, many of these resilient dogs are incredibly loving and loyal, waiting for a chance to find a safe home. By adopting a stray dog, you’re not only saving a life but also giving them the love and care they deserve. Adoption is a powerful way to reduce the homeless dog population and provide these animals with the opportunity for a better future."`}</p>
           </motion.div>
           <motion.div className="hidden md:flex flex-col w-1/2 justify-between" initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
