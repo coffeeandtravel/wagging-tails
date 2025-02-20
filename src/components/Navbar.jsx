@@ -21,11 +21,11 @@ const Navbar = () => {
           Wagging Tails
         </a>
       </div>
-      <div className="flex flex-row justify-between items-center gap-10 mr-4 md:mr-15">
-        <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ">
+      <div className="flex flex-row justify-between items-center gap-5 mr-4 md:mr-15">
+        <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ml-3">
           Adopt a soul.
         </button>
-        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ">
+        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer mr-3">
           List an adoption.
         </button>
         <div className="h-12 w-12 rounded-full bg-slate-600 flex justify-center align-center items-center">
