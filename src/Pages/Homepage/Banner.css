@@ -16,6 +16,6 @@
 
     @media screen and (max-width: 576px) {
         .banner-heading {
-            letter-spacing: 3px;
+            letter-spacing: -3px;
         }
     }
