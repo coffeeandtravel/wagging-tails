@@ -6,7 +6,7 @@ import FactBanner from "./Homepage/FactBanner";
 const Homepage = () => {
   return (
     <>
-      <div className="w-80%">
+      <div className="">
         <Banner />
         <FactBanner/>
       </div>
