@@ -21,11 +21,11 @@ const Navbar = () => {
           Wagging Tails
         </a>
       </div>
-      <div className="flex flex-row justify-between items-center gap-5 mr-4 md:mr-15">
-        <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ml-3">
+      <div className="flex flex-row justify-between items-center gap-10 mr-4 md:mr-15">
+        <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ">
           Adopt a soul.
         </button>
-        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer mr-3">
+        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ">
           List an adoption.
         </button>
         <div className="h-12 w-12 rounded-full bg-slate-600 flex justify-center align-center items-center">
@@ -40,15 +40,15 @@ const Navbar = () => {
       </div>
       {open && (
         <motion.div
-          className="absolute top-14 md:top-14 right-0 md:right-9 h-60 md:h-50 w-full md:w-100 rounded-b-3xl bg-[#EFEFEF]  flex justify-end text-right flex-col"
+          className="absolute top-14 md:top-14 right-5 md:right-9 h-60 md:h-50 w-[90%] md:w-100 rounded-b-3xl bg-[#EFEFEF]  flex align-top justify-end text-right flex-col"
           initial={{ y: 0, opacity: 0 }}
           animate={{ y: 8, opacity: 100 }}
         >
-          <div className="flex flex-row md:hidden  justify-center gap-5 ">
-          <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl  md:block cursor-pointer ">
+          <div className="flex flex-row md:hidden  justify-center gap-2 ">
+          <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl ml-2 md:block cursor-pointer ">
           Adopt a soul.
         </button>
-        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl  md:block cursor-pointer ">
+        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl mr-2 md:block cursor-pointer ">
           List an adoption.
         </button>
           </div>
