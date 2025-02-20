@@ -14,7 +14,7 @@ const Banner = () => {
     <motion.div className=" md:block mt-5" ref={ref} style={{opacity, scale}}>
       <div className=" flex items-center justify-center">
         <div className="banner h-[550px] w-[94%] md:h-[600px] md:w-[906px] relative rounded-3xl flex justify-center items-center">
-                <motion.h1 className='text-5xl md:text-8xl banner-heading text-amber-500 text-center' initial={{y:50, opacity:0}} animate={{y:5, opacity:1}} transition={{duration:0.8, ease:"easeOut"}} >Stop Buying! <br />Start Adopting.</motion.h1>
+                <motion.h1 className='text-5xl md:text-8xl banner-heading text-amber-500 text-center' initial={{y:100, opacity:0}} animate={{y:5, opacity:1}} transition={{duration:1.0, ease:"easeOut"}} >Stop Buying! <br />Start Adopting.</motion.h1>
         </div>
       </div>
     </motion.div>

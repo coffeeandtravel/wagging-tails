@@ -1,6 +1,13 @@
 .navBar{
  background: #EFEFEF;
 }
+.buttons:hover{
+    background-color: #FFD700; 
+    color: #000;
+    transform-origin: bottom;
+    transition: 0.5s ease-in-out;
+   
+}
 
 .navbarHeading{
     text-align: center;
