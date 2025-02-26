@@ -40,7 +40,7 @@ const Navbar = () => {
       </div>
       {open && (
         <motion.div
-          className="absolute top-14 md:top-14 right-5 md:right-9 h-60 md:h-50 w-[90%] md:w-100 rounded-b-3xl bg-[#EFEFEF]  flex align-top justify-end text-right flex-col"
+          className="absolute top-14 md:top-14 right-5 md:right-9 h-44 md:h-30 w-[90%] md:w-100 rounded-b-3xl bg-[#EFEFEF]  flex align-top justify-end text-right flex-col"
           initial={{ y: 0, opacity: 0 }}
           animate={{ y: 8, opacity: 100 }}
         >
@@ -53,9 +53,8 @@ const Navbar = () => {
         </button>
           </div>
           <ul className="mr-5 mt-2 mb-2">
-            <li className="text-3xl">Account</li>
-            <li className="text-3xl">Your Posts</li>
-            <li className="text-3xl">Sign Out</li>
+            <li className="text-3xl hover:text-amber-500 transition-colors">Your Posts</li>
+            <li className="text-3xl hover:text-amber-500 transition-colors">Sign Out</li>
           </ul>
         </motion.div>
       )}
