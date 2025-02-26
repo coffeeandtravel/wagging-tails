@@ -4,23 +4,29 @@ import {createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import SignIn from "./Pages/Sign-in/SignIn";
 import Footer from "./components/Footer";
 
-const router = createBrowserRouter(
-  [
-    {
-      path:'/',
-      element: <Homepage/>
-    },
-    {
-      path:'/sign-in',
-      element: <SignIn/>
-    }
-  ]
-)
+const Layout = () =>{
+  <>
+  <Navbar/>
+  <Outlet/>
+  <Footer/>
+  </>
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Homepage /> },
+      { path: "/sign-in", element: <SignIn /> },
+    ],
+  },
+]);
 function App() {
   return (
     <>
       <Navbar />
-      <RouterProvider router={router}><Outlet/></RouterProvider>
+      <RouterProvider router={router}/>
       <Footer/>
     </>
   );
