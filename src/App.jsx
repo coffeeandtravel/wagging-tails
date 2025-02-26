@@ -5,12 +5,13 @@ import SignIn from "./Pages/Sign-in/SignIn";
 import Footer from "./components/Footer";
 
 const Layout = () =>{
+  return(
   <>
   <Navbar/>
   <Outlet/>
   <Footer/>
   </>
-}
+)}
 
 const router = createBrowserRouter([
   {

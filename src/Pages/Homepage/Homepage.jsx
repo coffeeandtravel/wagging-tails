@@ -1,6 +1,3 @@
-// import React from 'react'
-
-import Footer from "../../components/Footer";
 import AdoptNow from "./AdoptNow";
 import Banner from "./Banner";
 import FactBanner from "./FactBanner";
@@ -14,7 +11,6 @@ const Homepage = () => {
         <FactBanner/>
         <AdoptNow/>
         <ListAdoption/>
-        <Footer/>
       </div>
     </>
   );

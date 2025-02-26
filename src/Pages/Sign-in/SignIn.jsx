@@ -12,7 +12,7 @@ const SignIn = () => {
         <div className="md:w-1/2 md:h-full md:mt-52 rounded-r-3xl mb-8">
           <form action="" className="ml-5 flex flex-col">
             <div className="flex flex-col  gap-1">
-              <label htmlFor="Email" className="text-2xl text-white">
+              <label htmlFor="Email" className="text-2xl md:text-3xl text-white">
                 Email
               </label>
               <input className=" h-12 md:h-14 w-[95%] md:w-[80%] bg-[#D9D9D9] rounded-lg px-2 text-xl"></input>
@@ -27,7 +27,7 @@ const SignIn = () => {
               ></input>
             </div>
             <div className="flex flex-col mt-10 gap-1">
-              <button className="bg-[#D9D9D9] h-12 w-32 cursor-pointer rounded-4xl text-2xl">
+              <button className="bg-[#D9D9D9] h-12 w-32 cursor-pointer rounded-4xl text-2xl hover:bg-amber-100 transition-colors">
                 Sign In
               </button>
             </div>
