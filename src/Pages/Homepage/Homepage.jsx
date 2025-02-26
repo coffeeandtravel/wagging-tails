@@ -1,10 +1,10 @@
 // import React from 'react'
 
-import Footer from "../components/Footer";
-import AdoptNow from "./Homepage/AdoptNow";
-import Banner from "./Homepage/Banner";
-import FactBanner from "./Homepage/FactBanner";
-import ListAdoption from "./Homepage/ListAdoption";
+import Footer from "../../components/Footer";
+import AdoptNow from "./AdoptNow";
+import Banner from "./Banner";
+import FactBanner from "./FactBanner";
+import ListAdoption from "./ListAdoption";
 
 const Homepage = () => {
   return (

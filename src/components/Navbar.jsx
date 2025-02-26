@@ -13,21 +13,21 @@ const Navbar = () => {
   };
   return (
     <div className="w-full bg-[#EFEFEF] h-16 flex items-center justify-between text-center sticky top-0 z-1">
-      <div>
+      <div className="flex items-center justify-center">
         <a
-          href="#"
+          href="/"
           className="navbarHeading w-fit ml-4 lg:ml-8 pr-1 h-12 text-3xl lg:text-4xl"
         >
           Wagging Tails
         </a>
       </div>
-      <div className="flex flex-row justify-between items-center gap-5 mr-4 md:mr-15">
-        <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ">
+      <div className="flex flex-row  gap-5 mr-4 md:mr-15">
+        <a className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:flex md:justify-center md:items-center cursor-pointer ">
           Adopt a soul.
-        </button>
-        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:block cursor-pointer ">
+        </a>
+        <a className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:flex md:justify-center md:items-center cursor-pointer ">
           List an adoption.
-        </button>
+        </a>
         <div className="h-12 w-12 rounded-full bg-slate-600 flex justify-center align-center items-center ml-0 lg:ml-10">
           <button onClick={userOpen} className="cursor-pointer">
             <img
@@ -45,16 +45,24 @@ const Navbar = () => {
           animate={{ y: 8, opacity: 100 }}
         >
           <div className="flex flex-row md:hidden  justify-center gap-2 ">
-          <button className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl ml-2 md:block cursor-pointer ">
-          Adopt a soul.
-        </button>
-        <button className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl mr-2 md:block cursor-pointer ">
-          List an adoption.
-        </button>
+            <a className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl ml-2 flex justify-center items-center cursor-pointer ">
+              Adopt a soul.
+            </a>
+            <a className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl mr-2 flex justify-center items-center md:block cursor-pointer ">
+              List an adoption.
+            </a>
           </div>
           <ul className="mr-5 mt-2 mb-2">
-            <li className="text-3xl hover:text-amber-500 transition-colors">Your Posts</li>
-            <li className="text-3xl hover:text-amber-500 transition-colors">Sign Out</li>
+            <li className="text-3xl">
+              <a href="" className="hover:text-amber-500 transition-colors">
+                Your Posts
+              </a>
+            </li>
+            <li className="text-3xl">
+              <a href="" className="hover:text-amber-500 transition-colors">
+                Sign Out
+              </a>
+            </li>
           </ul>
         </motion.div>
       )}
