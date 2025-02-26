@@ -10,6 +10,7 @@ export default defineConfig({
   base:'/',
   server: {
     host: true,
-    port: 80
+    port: 80,
+    historyApiFallback:true
   },
 })
