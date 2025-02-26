@@ -27,3 +27,17 @@
 .fact-text{
     letter-spacing: -1px;
 }
+.adopt{
+    background-image: url('../../assets/Adopt.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.listAdoption{
+    background-image: url('../../assets/List.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+}

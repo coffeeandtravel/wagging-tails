@@ -13,11 +13,11 @@ const FactBanner = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
   const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100])
-
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8])
   return (
-    <motion.div className=" mt-5" style={{opacity, y}}>
+    <motion.div className=" mt-5" ref={ref} style={{opacity, y, scale}}>
       <div className=" flex items-center justify-center">
-        <div className="h-[860px] w-[94%] md:h-[600px] md:w-[906px] bg-black rounded-3xl flex md:gap-20 items-center mb-12 p-5 flex-col md:flex-row-reverse justify-between">
+        <div className="h-[860px] w-[94%] md:h-[600px] md:w-[906px] bg-black rounded-3xl flex md:gap-20 items-center  p-5 flex-col md:flex-row-reverse justify-between">
           <motion.div className="fact h-[500px] w-full md:h-full md:w-1/2 mt-3 rounded-3xl flex items-center justify-center" initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>
