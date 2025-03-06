@@ -2,6 +2,7 @@ import "./Navbar.css";
 import icon from "../assets/Ellipse1.jpg";
 import { useState } from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const userOpen = () => {
@@ -12,19 +13,19 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="w-full bg-[#EFEFEF] h-16 flex items-center justify-between text-center sticky top-0 z-1">
+    <div className="w-full bg-[#EFEFEF] h-16 flex items-center justify-between text-center sticky top-0 z-100">
       <div className="flex items-center justify-center">
-        <a
+        <Link
           href="/"
-          className="navbarHeading w-fit ml-4 lg:ml-8 pr-1 h-12 text-3xl lg:text-4xl"
+          className="navbarHeading w-fit ml-4 lg:ml-8 pr-1 h-12 text-3xl lg:text-4xl lg:mt-1 mt-3"
         >
           Wagging Tails
-        </a>
+        </Link>
       </div>
       <div className="flex flex-row  gap-5 mr-4 md:mr-15">
-        <a className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:flex md:justify-center md:items-center cursor-pointer ">
+        <Link to="/adopt" className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl hidden md:flex md:justify-center md:items-center cursor-pointer ">
           Adopt a soul.
-        </a>
+        </Link>
         <a className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl hidden md:flex md:justify-center md:items-center cursor-pointer ">
           List an adoption.
         </a>
@@ -45,23 +46,23 @@ const Navbar = () => {
           animate={{ y: 8, opacity: 100 }}
         >
           <div className="flex flex-row md:hidden  justify-center gap-2 ">
-            <a className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl ml-2 flex justify-center items-center cursor-pointer ">
+            <Link to="/adopt" onClick={()=>setOpen(false)} className="bg-[#D9D9D9] w-44 rounded-full h-12 buttons text-xl ml-2 flex justify-center items-center cursor-pointer ">
               Adopt a soul.
-            </a>
-            <a className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl mr-2 flex justify-center items-center md:block cursor-pointer ">
+            </Link>
+            <Link className="bg-[#D9D9D9] w-48 rounded-full h-12 buttons text-xl mr-2 flex justify-center items-center md:block cursor-pointer ">
               List an adoption.
-            </a>
+            </Link>
           </div>
           <ul className="mr-5 mt-2 mb-2">
             <li className="text-3xl">
-              <a href="" className="hover:text-amber-500 transition-colors">
+              <Link href="" className="hover:text-amber-500 transition-colors">
                 Your Posts
-              </a>
+              </Link>
             </li>
             <li className="text-3xl">
-              <a href="" className="hover:text-amber-500 transition-colors">
-                Sign Out
-              </a>
+              <Link to="/sign-in" className="hover:text-amber-500 transition-colors" onClick={() => setOpen(false)}>
+                Sign In
+              </Link>
             </li>
           </ul>
         </motion.div>

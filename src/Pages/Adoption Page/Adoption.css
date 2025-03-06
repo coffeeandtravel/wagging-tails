@@ -1,0 +1,12 @@
+.images{
+    object-fit: cover;
+}
+.location{
+    width: 36.01px;
+height: 36px;
+flex-shrink: 0;
+aspect-ratio: 36.01/36.00;
+}
+.transition-image{
+    transition: opacity 0.5s ease-in-out;
+}
