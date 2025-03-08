@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom"
 import google from '../../assets/google.svg'
+import { useContext, useState } from "react"
+
 import './sing.css'
-import { useState } from "react"
+import { AuthContext } from "../../context/AuthProvider.jsx"
 const SignUp = () => {
+    const {createUser, loginWithGoogle} = useContext(AuthContext);
     const [error, setError] = useState("");
     const [mError, setMerror]=useState("");
-    const handleSignUp = (event) =>{
+
+
+    const handleSignUp = async(event) =>{
         event.preventDefault();
+
         const form = event.target;
 
         const mail = form.mail.value;
@@ -18,13 +24,33 @@ const SignUp = () => {
         if(password !== confirmPassword){
             setError("Passwords don't Match");
             return;
+          }
+          if(password.length<8){
+          setError("Password should be more than 8 characters");
+            return
         }
         if(!emailRegex.test(mail)) {
             setMerror("Please enter a valid email address.");
             return; // Stop further execution if email is invalid
         }
+        try{
+          await createUser(mail,password)
+        }
+        catch(error){
+          console.error("Error in SignIn component:", error.message);
+          setError(error.message);
+        }
+
         setError("");
         setMerror("");
+    }
+    const googleLogin = async() =>{
+      try{
+        await loginWithGoogle();
+      }
+      catch(error){
+        setError(error.message);
+      }
     }
 
   return (
@@ -37,7 +63,7 @@ const SignUp = () => {
       </div>
       <div className="md:w-1/2 md:h-full md:mt-52 rounded-r-3xl mb-8">
         <form action="" className="ml-5 flex flex-col" onSubmit={handleSignUp}>
-            <button className="h-14 w-[95%] md:w-[80%] bg-white mb-10 rounded-full flex flex-row items-center gap-1  justify-center cursor-pointer hover:bg-white/90 transition-colors transform-fill" >
+            <button className="h-14 w-[95%] md:w-[80%] bg-white mb-10 rounded-full flex flex-row items-center gap-1  justify-center cursor-pointer hover:bg-white/90 transition-colors transform-fill" onClick={googleLogin}>
             <img src={google} alt="" className="h-8 w-10"/><p className=" text-xl lg:text-2xl google-font">Sign up with Google </p>
             </button>
           <div className="flex flex-col  gap-1">

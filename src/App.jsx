@@ -8,6 +8,9 @@ import Post from "./Pages/PostAdoption/Post";
 import Test from "./Pages/Test";
 import DogInfo from "./Pages/Adoption Page/DogInfo";
 import SignUp from "./Pages/Sign-in/SignUp";
+import NotFound from "./Pages/NotFound/NotFound";
+import YourPosts from "./Pages/Your Posts/YourPosts";
+
 
 const Layout = () =>{
   return(
@@ -29,8 +32,9 @@ const router = createBrowserRouter([
       { path: "/adopt", element: <AdoptionPage/> },
       { path: "/post-adoption", element: <Post/> },
       { path: "/test", element: <Test/> },
-      {path:'/adopt/:id', element:<DogInfo/>, loader:({params})=>fetch(`http://localhost:3000/users/${params.id}`)}
-      // {path:'/adopt/single', element:<DogInfo/>}
+      {path:'/adopt/:id', element:<DogInfo/>, loader:({params})=>fetch(`http://localhost:3000/users/${params.id}`)},
+      {path:'/your-posts', element:<YourPosts/>},
+      {path: '*', element:<NotFound/>}
     ],
   },
 ]);
