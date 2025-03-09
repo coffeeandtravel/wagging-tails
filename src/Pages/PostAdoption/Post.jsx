@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 import "./Post.css";
 // import dog from "../../assets/adopt.jpg";
 // import dog1 from "../../assets/adopt1.jpg";
 // import dog2 from "../../assets/adopt2.jpg";
 
 const Post = () => {
+  const { auth, user } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  // console.log("Auth context:", auth);
+  // console.log("Current user:", auth?.currentUser);
   const [images, setImages] = useState([]);
-  // const dogs = [dog, dog1, dog2];
-  const submitPost = (event) => {
-    // fetch('http://localhost:3000/users').then(res=>res.json).then(data=>).catch((error)=>console.log(error.message))
+  
+  
+
+  const submitPost = async (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.petName.value;
@@ -17,46 +23,69 @@ const Post = () => {
     const contactNumber = form.contact.value;
     const ownerName = form.ownerName.value;
     const gender = form.petGender.value;
-    const userId = form.userID.value;
-    const images = form.imageURL.value;
     const description = form.description.value;
-    const userObj = {
-      name,
+
+    // Ensure Firebase auth exists
+    if (!auth || !auth.currentUser) {
+      alert("User not authenticated!");
+      return;
+    }
+    if (
+      (name,
       age,
       location,
       contactNumber,
-      gender,
       ownerName,
-      userId,
-      images,
-      description,
-    };
-    console.log(userObj);
+      gender,
+      description === "")
+    ) {
+      setError(`Please enter all the fields`);
+    }
+    // Get Firebase Token
+    const user = auth.currentUser;
+    const token = await user.getIdToken();
 
-    fetch("http://192.168.29.131:3000/users", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(userObj),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Post Uploaded Successfully!", data);
-        form.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Error uploading the post!");
+    // Append form data
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("age", age);
+    formData.append("location", location);
+    formData.append("contactNumber", contactNumber);
+    formData.append("ownerName", ownerName);
+    formData.append("gender", gender);
+    formData.append("description", description);
+    formData.append("userId", user.uid); // Firebase user ID
+
+    // Append images
+    images.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    // Send to backend
+    try {
+      const response = await fetch("http://localhost:3000/pets", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`, // Firebase token for verification
+        },
+        body: formData,
       });
+
+      if (response.ok) {
+        alert("Pet listed successfully!");
+      } else {
+        alert("Failed to list pet.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
-  
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
-    const imageUrls = files.map((file) => URL.createObjectURL(file));
-    setImages(imageUrls);
+    setImages(files);
   };
-    
-  
+
   return (
     <div className="max-w-screen flex items-center justify-center">
       <div className="bg-black outline-2 pl-2 outline-amber-500 rounded-3xl  text-black max-w-[95%] flex flex-col mt-10 mb-10 pr-2">
@@ -115,13 +144,14 @@ const Post = () => {
             </div>
             <div className="flex flex-col gap-1 justify-between  w-full lg:w-200 mx-1 my-1 pr-2">
               <label htmlFor="ownerName" className="text-l md:text-2xl">
-                Owner{`'`}s:
+                Owner{`'`}s Name:
               </label>
               <input
                 type=" text"
                 className="bg-[#2a2a2a] rounded-2xl h-12 lg:h-12 pl-2 text-[#EFEFEF] w-full lg:w-[50%] "
                 name="ownerName"
                 id=""
+                defaultValue={user.displayName}
               />
             </div>
             <div className="flex flex-col  mx-1 my-1 justify-between gap-1 pr-2">
@@ -141,78 +171,59 @@ const Post = () => {
                 <option value="F">Female</option>
               </select>
             </div>
-            <div className="flex flex-col gap-1 justify-between  w-full lg:w-200 mx-1 my-1 pr-2">
-              <label htmlFor="userID" className="text-l md:text-2xl">
-                userID:
-              </label>
-              <input
-                type=" text"
-                className="bg-[#2a2a2a] rounded-2xl h-12 lg:h-12 pl-2 text-[#EFEFEF] w-full lg:w-[50%] "
-                name="userID"
-                id=""
-              />
-            </div>
-            <div className="flex flex-col gap-1 justify-between  w-full lg:w-200 mx-1 my-1 pr-2">
-              <label htmlFor="imageURL" className="text-l md:text-2xl">
-                imageURL:
-              </label>
-              <input
-                type=" text"
-                className="bg-[#2a2a2a] rounded-2xl h-12 lg:h-12 pl-2 text-[#EFEFEF] w-full lg:w-[50%] "
-                name="imageURL"
-                id=""
-              />
-            </div>
             <div className="flex flex-col gap-1 justify-between w-full lg:w-200 mx-1 my-1 pr-2">
-      <label htmlFor="imageUpload" className="text-l md:text-2xl">
-        Upload Image:
-      </label>
-      <div className="flex flex-col sticky w-full lg:w-[50%] items-center justify-center">
-        <div className="h-52 bg-amber-50 my-2 rounded-md w-[100%] flex justify-between flex-col">
-          {/* Display uploaded images */}
-          <div className="flex flex-wrap p-2 gap-1">
-            {images.map((imgSrc, index) => (
-              <img
-                src={imgSrc}
-                alt={`Uploaded ${index}`}
-                className="h-20 w-20 object-contain"
-                key={index}
-              />
-            ))}
-          </div>
+              <label htmlFor="imageUpload" className="text-l md:text-2xl">
+                Upload Image:
+              </label>
+              <div className="flex flex-col sticky w-full lg:w-[50%] items-center justify-center">
+                <div className="h-52 bg-amber-50 my-2 rounded-md w-[100%] flex justify-between flex-col">
+                  {/* Display uploaded images */}
+                  <div className="flex flex-wrap p-2 gap-1">
+                    {images.map((imgSrc, index) => (
+                      <img
+                        src={imgSrc}
+                        alt={`Uploaded ${index}`}
+                        className="h-20 w-20 object-contain"
+                        key={index}
+                      />
+                    ))}
+                  </div>
 
-          {/* File Input and Upload Button */}
-          <div className="flex items-center justify-center mb-2">
-            <input
-              type="file"
-              id="imageUpload"
-              multiple
-              accept="image/*"
-              onChange={handleFileChange}
-              className="hidden"
-            />
-            <label htmlFor="imageUpload" className="button lg:w-[50] cursor-pointer flex items-center">
-              <svg
-                id="UploadToCloud"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                height="16px"
-                width="16px"
-                className="icon"
-              >
-                <path d="M0 0h24v24H0V0z" fill="none"></path>
-                <path
-                  className="color000000 svgShape"
-                  fill="#000000"
-                  d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l4.65-4.65c.2-.2.51-.2.71 0L17 13h-3z"
-                ></path>
-              </svg>
-              Upload Image
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
+                  {/* File Input and Upload Button */}
+                  <div className="flex items-center justify-center mb-2">
+                    <input
+                      type="file"
+                      id="imageUpload"
+                      multiple
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
+                    <label
+                      htmlFor="imageUpload"
+                      className="button lg:w-[50] cursor-pointer flex items-center"
+                    >
+                      <svg
+                        id="UploadToCloud"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="16px"
+                        width="16px"
+                        className="icon"
+                      >
+                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                        <path
+                          className="color000000 svgShape"
+                          fill="#000000"
+                          d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l4.65-4.65c.2-.2.51-.2.71 0L17 13h-3z"
+                        ></path>
+                      </svg>
+                      Upload Image
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="flex flex-col gap-3 w-full lg:w-full mx-1 my-1 pr-2">
               <label htmlFor="description" className="text-l md:text-2xl">
                 Describe why you want to post your pet for adoption:
@@ -223,6 +234,9 @@ const Post = () => {
                 name="description"
                 id=""
               />
+            </div>
+            <div>
+              <p className="text-red-500 text-sm">{error}</p>
             </div>
             <div className="flex gap-1 mb-4 pr-1">
               <button

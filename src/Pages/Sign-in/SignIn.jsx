@@ -18,6 +18,7 @@ const SignIn = () => {
     // console.log("Email:", mail, "Password:", password); // Debugging output
     try {
       return await login(mail, password);
+      
     } catch (error) {
       if(error.message == "Firebase: Error (auth/invalid-credential).")
       setError("Wrong Email or Password.");
@@ -26,6 +27,7 @@ const SignIn = () => {
   const googleLogin = async () => {
     try {
       await loginWithGoogle();
+      console.log("User Signed in successfully.")
     } catch (error) {
       setError(error.message);
     }

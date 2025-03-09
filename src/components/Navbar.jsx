@@ -11,8 +11,7 @@ const auth = getAuth(app);
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const {user} = useContext(AuthContext);
-
-
+  // console.log(user.photoURL)
   const userOpen = () => {
     if (!open) {
       setOpen(true);
@@ -51,7 +50,7 @@ const Navbar = () => {
         <div className="h-12 w-12 rounded-full bg-slate-600 flex justify-center align-center items-center ml-0 lg:ml-10">
           <button onClick={userOpen} className="cursor-pointer">
             <img
-              src={icon}
+              src={user?user.photoURL:icon}
               className="h-[45px] w-[45px] rounded-full z-100"
               alt=""
             />

@@ -10,7 +10,7 @@ import {
 import app from "../config/firebase.config";
 import { createContext, useEffect, useState } from "react";
 
-//Intialize auth
+// Initialize Firebase Auth
 const auth = getAuth(app);
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
@@ -21,23 +21,24 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  //create user with mail and password
-  const createUser = async (mail, password) => {
+  // Create user with email & password
+  const createUser = async (email, password) => {
     setLoading(true);
     try {
-      return await createUserWithEmailAndPassword(auth, mail, password);
+      return await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error("Sign-up Error", error.message);
+      throw error;
     } finally {
-      setLoading(false); // Ensures loading is set to false, regardless of success or failure
+      setLoading(false);
     }
   };
 
-  //login with email and password
-  const login = async (mail, password) => {
+  // Login with email & password
+  const login = async (email, password) => {
     setLoading(true);
     try {
-      return await signInWithEmailAndPassword(auth, mail, password);
+      return await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error("Sign-in Error", error.message);
       throw error;
@@ -46,26 +47,36 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  //login with google
+  // Login with Google
   const loginWithGoogle = async () => {
+    setLoading(true);
     try {
       return await signInWithPopup(auth, googleProvider);
     } catch (error) {
-      console.error("Sign-in Error", error.message);
+      console.error("Google Sign-in Error", error.message);
+      throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
-  //signout user
+  // Logout user
   const logOut = async () => {
+    setLoading(true);
     try {
       await signOut(auth);
+      setUser(null);
     } catch (error) {
       console.error("Log-out Error", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Listen for Auth State Changes
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      // console.log("Auth state changed:", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -74,12 +85,13 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const authInfo = {
+    auth, // ✅ Pass Firebase auth object
+    user, // ✅ Pass current user
+    loading,
     createUser,
     login,
     loginWithGoogle,
     logOut,
-    user,
-    loading,
   };
 
   return (
@@ -88,4 +100,3 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
-
