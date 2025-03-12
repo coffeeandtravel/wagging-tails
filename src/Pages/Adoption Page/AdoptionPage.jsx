@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "./Adoption.css";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
@@ -9,7 +9,7 @@ const AdoptionPage = () => {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    fetch("http://192.168.29.131:3000/users")
+    fetch("http://192.168.29.131:3000/pets")
       .then((res) => res.json())
       .then((data) => {
         setDogs(data);
@@ -33,7 +33,7 @@ const AdoptionPage = () => {
           dogs.map((item) => (
             <motion.div
               className="h-130 w-85 bg-black rounded-3xl border-2 border-white"
-              key={item._id}
+              key={item._id} id={`${item.name}+${item.gender}+${item.location}`}
             >
               <div className="h-full w-full flex flex-col">
                 {loading ? (
@@ -47,7 +47,7 @@ const AdoptionPage = () => {
                     className="h-[70%] w-[100%] object-cover images rounded-t-3xl"
                   />
                 )}
-                <Link to={`/adopt/${item._id}`}>
+                <Link to={`/user/adopt/${item._id}`}>
                   <div className="ml-5 mt-3 gap-2 flex flex-col">
                     <p className=" text-5xl text-white">{item.name}</p>
                     <p className="text-white text-xl">{item.gender}</p>

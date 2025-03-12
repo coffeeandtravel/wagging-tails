@@ -4,6 +4,7 @@ import { useContext, useState } from "react"
 
 import './sing.css'
 import { AuthContext } from "../../context/AuthProvider.jsx"
+import Navbar from "../../components/Navbar.jsx"
 const SignUp = () => {
     const {createUser, loginWithGoogle} = useContext(AuthContext);
     const [error, setError] = useState("");
@@ -54,6 +55,8 @@ const SignUp = () => {
     }
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-full w-full flex justify-center items-center mb-20">
     <div className="flex flex-col w-[95%] h-fit md:flex-row mt-10 bg-black md:h-[800px] md:w-[1200px] rounded-3xl gap-20 md:gap-0 md:items-center md:justify-between outline-4 md:outline-4 outline-amber-300">
       <div className="w-1/2 h-full  rounded-l-3xl">
@@ -112,6 +115,7 @@ const SignUp = () => {
       </div>
     </div>
   </div>
+  </>
   )
 }
 

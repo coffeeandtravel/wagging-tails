@@ -1,0 +1,5 @@
+.background{
+    background-image: url('../../assets/gradient.png');
+    background-position: center;
+    object-fit: cover;
+}

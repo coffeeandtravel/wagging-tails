@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import "./Post.css";
+import Spinner from "../../components/Spinner";
+import { useNavigate } from "react-router-dom";
+
 // import dog from "../../assets/adopt.jpg";
 // import dog1 from "../../assets/adopt1.jpg";
 // import dog2 from "../../assets/adopt2.jpg";
@@ -8,14 +11,16 @@ import "./Post.css";
 const Post = () => {
   const { auth, user } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [loading,setLoading] = useState(false);
   // console.log("Auth context:", auth);
   // console.log("Current user:", auth?.currentUser);
   const [images, setImages] = useState([]);
-  
+  const navigate = useNavigate();
   
 
   const submitPost = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const form = event.target;
     const name = form.petName.value;
     const age = form.petAge.value;
@@ -40,6 +45,7 @@ const Post = () => {
       description === "")
     ) {
       setError(`Please enter all the fields`);
+      setLoading(false);
     }
     // Get Firebase Token
     const user = auth.currentUser;
@@ -66,15 +72,18 @@ const Post = () => {
       const response = await fetch("http://localhost:3000/pets", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`, // Firebase token for verification
+          Authorization: `Bearer ${token}`, 
         },
         body: formData,
       });
 
       if (response.ok) {
         alert("Pet listed successfully!");
+        setLoading(false);
+        navigate(`/adopt/#${name}+${gender}+${location}`)
       } else {
         alert("Failed to list pet.");
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -240,10 +249,14 @@ const Post = () => {
             </div>
             <div className="flex gap-1 mb-4 pr-1">
               <button
-                className="bg-white w-full lg:w-50 h-12 text-black text-xl rounded-2xl cursor-pointer"
+                className="bg-white w-full lg:w-50 h-12 text-black text-xl rounded-2xl cursor-pointer relative"
                 type="submit"
               >
-                Submit
+                {loading?(
+                  <div className="h-full w-full flex justify-center items-center">
+                    <Spinner className="max-h-2 max-w-2 object-fill" />
+                  </div>
+                  ): "Submit"}
               </button>
             </div>
           </form>

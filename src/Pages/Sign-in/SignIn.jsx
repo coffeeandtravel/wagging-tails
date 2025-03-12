@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import google from "../../assets/google.svg";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
+import Navbar from "../../components/Navbar";
 
 const SignIn = () => {
   const { login, loginWithGoogle } = useContext(AuthContext);
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   const signIn = async (event) => {
     event.preventDefault();
     setError("");
@@ -18,22 +19,25 @@ const SignIn = () => {
     // console.log("Email:", mail, "Password:", password); // Debugging output
     try {
       return await login(mail, password);
-      
     } catch (error) {
       if(error.message == "Firebase: Error (auth/invalid-credential).")
       setError("Wrong Email or Password.");
     }
+    navigate('/');
   };
   const googleLogin = async () => {
     try {
       await loginWithGoogle();
       console.log("User Signed in successfully.")
+      navigate('/')
     } catch (error) {
       setError(error.message);
     }
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-full w-full flex justify-center items-center mb-20">
       <div className="flex flex-col w-[95%] h-fit md:flex-row mt-10 bg-black md:h-[650px] md:w-[1200px] rounded-3xl gap-20 md:gap-0 md:items-center md:justify-between outline-4 md:outline-4 outline-amber-300">
         <div className="w-1/2 h-full  rounded-l-3xl">
@@ -44,7 +48,7 @@ const SignIn = () => {
         <div className="md:w-1/2 md:h-full md:mt-52 rounded-r-3xl mb-8">
           <form action="" className="ml-5 flex flex-col" onSubmit={signIn}>
             <button
-              className="h-14 w-[95%] md:w-[80%] bg-white mb-10 rounded-full flex flex-row items-center gap-1 justify-center cursor-pointer hover:bg-white/90 transition-opacity transform-fill"
+              className="h-14 w-[95%] md:w-[80%] bg-white mb-10 rounded-full flex flex-row items-center gap-1 justify-center cursor-pointer hover:bg-white/90 transition-all duration-200"
               onClick={googleLogin}
             >
               <img src={google} alt="" className="h-8 w-10" />
@@ -107,6 +111,7 @@ const SignIn = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
