@@ -13,6 +13,7 @@ const YourPosts = () => {
   // eslint-disable-next-line no-unused-vars
   const { auth, user } = useContext(AuthContext);
   const [hoveredPost, setHoveredPost] = useState(null); // State to track hovered post
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -20,12 +21,12 @@ const YourPosts = () => {
         setLoading(false);
         return;
       }
-
+      
       try {
         const token = await user.getIdToken(); // Ensure we get the token asynchronously
         const userId = user.uid; // Use UID instead of email if that's what the backend expects
 
-        const response = await fetch(`http://localhost:3000/pets/user/${userId}`, {
+        const response = await fetch(`${BASE_URL}/pets/user/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`, // Firebase token for verification
           },
@@ -65,7 +66,7 @@ const handledeleteButton = ()=>{
   
     try {
       const token = await user.getIdToken(); // Get Firebase token
-      const response = await fetch(`http://localhost:3000/pets/${id}`, {
+      const response = await fetch(`${BASE_URL}/pets/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
