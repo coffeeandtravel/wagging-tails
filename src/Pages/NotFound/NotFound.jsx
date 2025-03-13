@@ -1,4 +1,4 @@
-import './NotFound.css'
+import './Notfound.css'
 import FuzzyText from './FuzzyText/FuzzyText';
 
 const NotFound = () => {
