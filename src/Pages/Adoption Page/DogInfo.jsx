@@ -1,7 +1,4 @@
-// import image from "../../assets/adopt1.jpg";
-// import image1 from "../../assets/adopt2.jpg";
-// import image2 from "../../assets/Adopt.jpg";
-import right from "../../assets/right.svg";
+import right from "../../assets/Right.svg";
 import left from "../../assets/left.svg";
 import './Info.css'
 import { useState } from "react";
