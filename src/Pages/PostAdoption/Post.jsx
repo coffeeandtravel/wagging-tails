@@ -36,17 +36,19 @@ const Post = () => {
       return;
     }
     if (
-      (name,
-      age,
-      location,
-      contactNumber,
-      ownerName,
-      gender,
-      description === "")
+      name === "" ||
+      age === "" ||
+      location === "" ||
+      contactNumber === "" ||
+      ownerName === "" ||
+      gender === "" ||
+      description === ""
     ) {
-      setError(`Please enter all the fields`);
+      setError("Please enter all the fields");
       setLoading(false);
+      return; // Stop execution if fields are empty
     }
+    
     // Get Firebase Token
     const user = auth.currentUser;
     const token = await user.getIdToken();
@@ -92,9 +94,10 @@ const Post = () => {
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
-    const imageUrls = files.map((file) => URL.createObjectURL(file));
-    setImages(imageUrls);
+    setImages((prevImages) => [...prevImages, ...files]); // Store actual files
   };
+  
+  
 
   return (
     <div className="max-w-screen flex items-center justify-center">
@@ -189,15 +192,16 @@ const Post = () => {
                 <div className="h-52 bg-amber-50 my-2 rounded-md w-[100%] flex justify-between flex-col">
                   {/* Display uploaded images */}
                   <div className="flex flex-wrap p-2 gap-1">
-                    {images.map((imgSrc, index) => (
-                      <img
-                        src={imgSrc}
-                        alt={`Uploaded ${index}`}
-                        className="h-20 w-20 object-contain"
-                        key={index}
-                      />
-                    ))}
-                  </div>
+  {images.map((image, index) => (
+    <img
+      src={URL.createObjectURL(image)} // Generate URL on-the-fly
+      alt={`Uploaded ${index}`}
+      className="h-20 w-20 object-contain"
+      key={index}
+    />
+  ))}
+</div>
+
 
                   {/* File Input and Upload Button */}
                   <div className="flex items-center justify-center mb-2">
