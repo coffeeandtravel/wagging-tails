@@ -91,11 +91,11 @@ const Edit = () => {
 
   return (
     <div className="max-w-screen flex items-center justify-center">
-      <div className="bg-black outline-2 pl-2 outline-amber-500 rounded-3xl text-black max-w-[95%] flex flex-col mt-10 mb-10 pr-2">
-        <div className="flex items-center ml-3 border-amber-50">
-          <h1 className="text-6xl text-amber-500 mt-10">Edit Post:</h1>
+      <div className="bg-black outline-2 pl-0 lg:pl-2 outline-amber-500 rounded-3xl  text-black w-[95%] md:w-[80%] lg:w-[55%] flex flex-col mt-10 mb-10">
+        <div className="flex items-center ml-3  border-amber-50">
+          <h1 className=" text-6xl  text-amber-500 mt-10">Edit:</h1>
         </div>
-        <div className="text-white mt-10 w-fit max-w-screen">
+        <div className="text-white mt-10 w-fit ">
           <form onSubmit={handleEdit} className="flex flex-col gap-5 lg:gap-7 ml-2">
             <div className="flex flex-col gap-1 justify-between w-full lg:w-200 mx-1 my-1 pr-2">
               <label htmlFor="petName" className="text-l md:text-2xl">Pet Name:</label>

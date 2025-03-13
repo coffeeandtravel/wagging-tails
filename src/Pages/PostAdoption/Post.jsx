@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Post = () => {
   const { auth, user } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // console.log("Auth context:", auth);
   // console.log("Current user:", auth?.currentUser);
   const [images, setImages] = useState([]);
@@ -72,7 +72,7 @@ const Post = () => {
       const response = await fetch(`${API_BASE_URL}/pets`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
         body: formData,
       });
@@ -80,7 +80,7 @@ const Post = () => {
       if (response.ok) {
         alert("Pet listed successfully!");
         setLoading(false);
-        navigate(`/adopt/#${name}+${gender}+${location}`)
+        navigate(`/adopt/#${name}+${gender}+${location}`);
       } else {
         alert("Failed to list pet.");
         setLoading(false);
@@ -92,12 +92,13 @@ const Post = () => {
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
-    setImages(files);
+    const imageUrls = files.map((file) => URL.createObjectURL(file));
+    setImages(imageUrls);
   };
 
   return (
     <div className="max-w-screen flex items-center justify-center">
-      <div className="bg-black outline-2 pl-2 outline-amber-500 rounded-3xl  text-black max-w-[95%] flex flex-col mt-10 mb-10 pr-2">
+      <div className="bg-black outline-2 pl-2 outline-amber-500 rounded-3xl  text-black max-w-[95%] flex flex-col mt-10 mb-10">
         <div className="flex items-center ml-3  border-amber-50">
           <h1 className=" text-6xl  text-amber-500 mt-10">New Post:</h1>
         </div>
@@ -252,11 +253,13 @@ const Post = () => {
                 className="bg-white w-full lg:w-50 h-12 text-black text-xl rounded-2xl cursor-pointer relative"
                 type="submit"
               >
-                {loading?(
+                {loading ? (
                   <div className="h-full w-full flex justify-center items-center">
                     <Spinner className="max-h-2 max-w-2 object-fill" />
                   </div>
-                  ): "Submit"}
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
           </form>
