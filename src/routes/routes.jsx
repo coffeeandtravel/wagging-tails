@@ -12,7 +12,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Privateroute from "../Pages/Privateroute";
 import Edit from "../EditPage/Edit";
 import About from "../Pages/FooterPages/About";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const router = createBrowserRouter([
     {
         path: "/",
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
                 path: "adopt/:id",
                 element: <DogInfo />,
                 loader: async ({ params }) => {
-                    const response = await fetch(`http://localhost:3000/pets/${params.id}`);
+                    const response = await fetch(`${API_BASE_URL}/pets/${params.id}`);
                     if (!response.ok) {
                         throw new Error(`Error fetching data: ${response.status}`);
                     }

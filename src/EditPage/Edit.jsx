@@ -8,6 +8,8 @@ const Edit = () => {
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // console.log(API_BASE_URL)
     const [petData, setPetData] = useState({
       name: "",
       age: "",
@@ -24,7 +26,7 @@ const Edit = () => {
     useEffect(() => {
       const fetchPetData = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/pets/${id}`);
+          const response = await fetch(`${API_BASE_URL}/pets/${id}`);
           if (response.ok) {
             const data = await response.json();
             setPetData(data);
@@ -62,7 +64,7 @@ const Edit = () => {
       }
   
       try {
-        const response = await fetch(`http://localhost:3000/pets/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/pets/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

@@ -16,7 +16,7 @@ const Post = () => {
   // console.log("Current user:", auth?.currentUser);
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
-  
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const submitPost = async (event) => {
     event.preventDefault();
@@ -69,7 +69,7 @@ const Post = () => {
 
     // Send to backend
     try {
-      const response = await fetch("http://localhost:3000/pets", {
+      const response = await fetch(`${API_BASE_URL}/pets`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`, 

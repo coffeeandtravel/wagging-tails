@@ -7,9 +7,9 @@ import "./Info.css";
 const AdoptionPage = () => {
   const [dogs, setDogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
-    fetch("http://192.168.29.131:3000/pets")
+    fetch(`${API_BASE_URL}/pets`)
       .then((res) => res.json())
       .then((data) => {
         setDogs(data);

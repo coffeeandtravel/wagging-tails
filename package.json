@@ -1,6 +1,8 @@
 {
   "name": "wagging-tails",
   "private": true,
+  "homepage": "/",
+  "proxy":"https://waggingtails-app.vercel.app/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -13,6 +15,7 @@
     "@react-three/drei": "^10.0.4",
     "@react-three/fiber": "^9.0.4",
     "@tailwindcss/vite": "^4.0.7",
+    "dotenv": "^16.4.7",
     "firebase": "^11.4.0",
     "motion": "^12.4.5",
     "react": "^19.0.0",
