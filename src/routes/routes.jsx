@@ -39,7 +39,7 @@ const router = createBrowserRouter([
                     return response.json();
                 }
             },
-            { path: "your-posts", element: <YourPosts /> },
+            { path: "your-posts", element: <YourPosts />,},
             { path: "post-adoption", element: <Post /> },
             { path: "test", element: <Test /> },
             {path:"edit/:id", element:<Edit/>}
