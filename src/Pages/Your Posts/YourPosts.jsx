@@ -111,7 +111,7 @@ const handledeleteButton = ()=>{
           >
             <div className="h-full w-full flex flex-col">
               <img
-                src={item.images}
+                src={item.images[0]}
                 alt={`Image for ${item.name}`}
                 className="h-[70%] w-[100%] object-cover images rounded-t-3xl"
               />
