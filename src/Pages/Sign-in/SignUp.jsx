@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import google from '../../assets/google.svg'
 import { useContext, useState } from "react"
 
@@ -9,11 +9,11 @@ const SignUp = () => {
     const {createUser, loginWithGoogle} = useContext(AuthContext);
     const [error, setError] = useState("");
     const [mError, setMerror]=useState("");
+    const navigate = useNavigate();
 
 
     const handleSignUp = async(event) =>{
         event.preventDefault();
-
         const form = event.target;
 
         const mail = form.mail.value;
@@ -35,7 +35,8 @@ const SignUp = () => {
             return; // Stop further execution if email is invalid
         }
         try{
-          await createUser(mail,password)
+          await createUser(mail,password);
+          navigate('/');
         }
         catch(error){
           console.error("Error in SignIn component:", error.message);
